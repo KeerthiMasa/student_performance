@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Student Pass Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <h1>Student Pass Predictor</h1>
+    <form method="POST" action="/predict">
+        <label>Previous Score 1:
+            <input type="number" name="score1" min="0" max="100" step="0.01" required
+                   value="{{ score1 if score1 is defined else '' }}" />
+        </label><br/><br/>
+        <label>Previous Score 2:
+            <input type="number" name="score2" min="0" max="100" step="0.01" required
+                   value="{{ score2 if score2 is defined else '' }}" />
+        </label><br/><br/>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction Result:</h2>
+        <p>Student with scores <strong>{{ score1 }}</strong> and <strong>{{ score2 }}</strong> is predicted to: <strong>{{ prediction }}</strong></p>
+    {% endif %}
+</body>
+</html>
